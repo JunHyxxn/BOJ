@@ -1,4 +1,4 @@
-
+## BOJ - 시간초과 // Programmers - Pass
 N = int(input())
 col = [False for _ in range(N)]
 r_u = [False for _ in range(2*N - 1)]
