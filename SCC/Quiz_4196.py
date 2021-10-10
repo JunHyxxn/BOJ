@@ -25,64 +25,6 @@ leader가 연결되어 있으면 연결 가능...?
 => SCC 그룹간 in_degree가 0인 SCC의 개수가 쓰러뜨려야하는 도미노가 된다.
 Ver. Tarjan's Algorithms
 """
-# import sys
-# sys.setrecursionlimit(10**9)
-
-# def Tarjan(now):
-#     visited[now] = now
-#     stack.append(now)
-#     par = visited[now]
-
-#     for next_node in graph[now]:
-#         if visited[next_node] == 0: ## 아직 미방문
-#             par = min(par, Tarjan(next_node)) ## 재귀
-#         elif finished[next_node]==0: ## 방문했지만 아직 SCC 검사 끝나지 않은 경우
-#             par = min(par, visited[next_node]) ## 더 작은 par값으로 return 해준다.
-    
-#     ## 더 이상 DFS 진행할 노드 없으면 SCC완성 시킨다.
-#     if par == visited[now]: 
-#         while True:
-#             temp = stack.pop()
-#             SCC[temp] = par ## SCC 배열에 leader를 Check
-#             finished[temp] = 1 ## SCC 검사 끝났으면 finished
-#             if temp == now: ## now와 같아질때까지 stack에서 pop한다.
-#                 break
-#     return par 
-
-# T = int(sys.stdin.readline())
-
-# for _ in range(T):
-#     N,M = map(int, sys.stdin.readline().split())
-#     graph = {i:[] for i in range(1,N+1)}
-#     for _ in range(M):
-#         s, d = map(int,sys.stdin.readline().split())
-#         graph[s].append(d)
-
-#     ## initialize
-#     visited = [0] * (N+1)
-#     finished = [0] * (N+1)
-#     SCC =[0] *(1+N)
-#     stack = []
-#     ## 모든 노드를 DFS진행
-#     for i in graph.keys():
-#         if visited[i] == 0: Tarjan(i)
-
-#     ## SCC간 연결 여부 검사
-#     scc_adj = {i : [] for i in set(SCC[1:])}
-#     for i in range(1, N+1):
-#         for j in graph[i]:
-#             if SCC[i] != SCC[j]:
-#                 scc_adj[SCC[j]].append(SCC[i])
-
-#     cnt = 0
-#     for k, v in scc_adj.items():
-        
-#         if len(v) == 0:
-#             cnt += 1
-
-#     sys.stdout.write(str(cnt))
-
-
 import sys
 sys.setrecursionlimit(10**8)
 count = 0
