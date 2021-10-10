@@ -95,12 +95,11 @@ def dfs(start):
     for nxt in graph[start]:
         if visited[nxt]==-1:
             par = min(par, dfs(nxt))
-        elif finished[nxt]==-1:
+        elif SCC[nxt]==-1:
             par = min(par, visited[nxt])
     if par == visited[start]:
         while True:
             temp = stack.pop()
-            finished[temp] = par
             SCC[temp] = par
             if visited[temp] == par:
                 break
@@ -114,8 +113,7 @@ for _ in range(T):
         x,y = map(int, sys.stdin.readline().split())
         graph[x].append(y)
     visited= [-1]*(1+N)
-    finished = [-1] * (1+N)
-    SCC = [0]*(1+N)
+    SCC = [-1]*(1+N)
     stack = []
     for i in range(1, 1+N):
         if visited[i]==-1: dfs(i)
@@ -123,11 +121,9 @@ for _ in range(T):
     for i in range(1, 1+N): ## start
         for j in graph[i]: ## destination
             if SCC[i] != SCC[j]: ## 서로 다른 SCC라면 in,out degree존재
-                scc_graph[SCC[j]].append(SCC[i])
+                scc_graph[SCC[j]].append(SCC[i]) ## in_degree 위해 반대로 간선 삽입
     cnt = 0
     for _,v in scc_graph.items():
         if len(v) == 0:
             cnt +=1
     sys.stdout.write(str(cnt)+'\n')
-    # if cnt: sys.stdout.write(str(cnt)+'\n')
-    # else: sys.stdout.write(str(1)+'\n')
