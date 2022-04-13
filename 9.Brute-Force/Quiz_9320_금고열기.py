@@ -31,51 +31,37 @@
 
 탐색이 완료되면 추가 탐색을 방지한다.
 """
-
-from copy import deepcopy
 from fractions import Fraction
 from collections import deque
 
 def calc(expression):
     expression = deque(expression)
-    if len(expression) == 3:
-        x, oper, y = expression
-        if oper == '+':
-            return x + y
-        elif oper == '-':
-            return x - y
-        elif oper == '/':
-            if y == 0: return -1
-            return Fraction(x,y)
-        elif oper == '*':
-            return x * y
-    else:
-        nums = []
-        opers = []
-        while expression:
-            elem = expression.popleft()
-            if type(elem) == int or type(elem) == Fraction:
-                nums.append(elem)
-            elif type(elem) == str:
-                if elem == '*' or elem == '/':
-                    x = nums.pop()
-                    y = expression.popleft()
-                    if elem == '*':
-                        nums.append(x*y)
-                    elif elem == '/':
-                        if y == 0: return -1
-                        nums.append(Fraction(x,y))
-                else:
-                    opers.append(elem)
-        
-        x = nums[0]
-        for i in range(len(opers)):
-            if opers[i] == '+':
-                x = x + nums[i+1]
-            elif opers[i] == '-':
-                x = x - nums[i+1]
-                
-        return x
+    nums = []
+    opers = []
+    while expression:
+        elem = expression.popleft()
+        if type(elem) == int or type(elem) == Fraction:
+            nums.append(elem)
+        elif type(elem) == str:
+            if elem == '*' or elem == '/':
+                x = nums.pop()
+                y = expression.popleft()
+                if elem == '*':
+                    nums.append(x*y)
+                elif elem == '/':
+                    if y == 0: return -1
+                    nums.append(Fraction(x,y))
+            else:
+                opers.append(elem)
+    
+    x = nums[0]
+    for i in range(len(opers)):
+        if opers[i] == '+':
+            x = x + nums[i+1]
+        elif opers[i] == '-':
+            x = x - nums[i+1]
+            
+    return x
         
 def bracket(exp):
     """
@@ -83,46 +69,45 @@ def bracket(exp):
     _ : operator
     """
     flag = False
-    temp = deepcopy(exp)
     
     ## 1. (O _ O) _ O _ O
-    res = calc(temp[:3])
-    res = calc([res]+temp[3:])
+    res = calc(exp[:3])
+    res = calc([res]+exp[3:])
     if res == 24.0:
         flag = True
         return flag
     
     ## 2. (O _ O _ O) _ O
-    res = calc(temp[:5])
-    res = calc([res] + temp[5:])
+    res = calc(exp[:5])
+    res = calc([res] + exp[5:])
     if res == 24.0:
         flag = True
         return flag
     ## 3. O _ (O _ O) _ O
-    res = calc(temp[2:5])
-    res = calc(temp[:2] + [res] + temp[5:])
+    res = calc(exp[2:5])
+    res = calc(exp[:2] + [res] + exp[5:])
     if res == 24.0:
         flag = True
         return flag
     
     ## 4. O _ (O _ O _ O)
-    res = calc(temp[2:])
-    res = calc(temp[:2] + [res])
+    res = calc(exp[2:])
+    res = calc(exp[:2] + [res])
     if res == 24.0:
         flag = True
         return flag
     
     ## 5. O _ O _ (O _ O)
-    res = calc(temp[4:])
-    res = calc(temp[:4] + [res])
+    res = calc(exp[4:])
+    res = calc(exp[:4] + [res])
     if res == 24.0:
         flag = True
         return flag
     
     ## 6. (O _ O) _ (O _ O)
-    res1 = calc(temp[:3])
-    res2 = calc(temp[4:])
-    res = calc([res1, temp[3], res2])
+    res1 = calc(exp[:3])
+    res2 = calc(exp[4:])
+    res = calc([res1, exp[3], res2])
     if res == 24.0:
         flag = True
         return flag
