@@ -1,4 +1,5 @@
 """
+문제 출처 : https://www.acmicpc.net/problem/1194
 'a'~'f' :  97~102
 "A"~"F" : 65~70
 """
@@ -10,12 +11,15 @@ d = [[0,1], [1,0], [0,-1], [-1,0]]
 N, M = map(int, input().split())
 miro = [list(map(str, input())) for _ in range(N)]
 start = None
+flag = False
 for i in range(N):
+    if flag: break    
     for j in range(M):
         if miro[i][j] == '0':
             start = (i, j)
             miro[i][j] = '.'
-            continue
+            flag = True
+            break
             
 
 def BFS(now, keys):
