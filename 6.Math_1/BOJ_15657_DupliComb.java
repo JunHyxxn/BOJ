@@ -1,0 +1,47 @@
+package com.day0804;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.StringTokenizer;
+
+public class BOJ_15657_DupliComb {
+	static int N, M;
+	static List<Integer> numbers = new ArrayList<>();
+	static int[] result;
+	static StringBuilder sb = new StringBuilder();
+	
+	static void perm(int idx, int start) {
+		if (idx == M) {
+			for (int i = 0; i < M; i++) {
+				sb.append(result[i] + " ");
+			}
+			sb.append("\n");
+			return;
+		}
+		
+		for (int i = start; i < N; i++) {
+			result[idx] = numbers.get(i);
+			perm(idx+1, i);
+		}
+	}
+	public static void main(String[] args) throws IOException{
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		N = Integer.parseInt(st.nextToken()); M = Integer.parseInt(st.nextToken());
+		result = new int[M];
+		st = new StringTokenizer(br.readLine());
+		for (int i = 0; i < N; i++) {
+			numbers.add(Integer.parseInt(st.nextToken()));
+		}
+		// 정렬
+		Collections.sort(numbers);
+		
+		perm(0, 0);
+		System.out.println(sb);
+	}
+}
+
