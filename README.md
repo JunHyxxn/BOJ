@@ -10,6 +10,10 @@
 
 ## BOJ - Platinum Ⅴ
 
+백준 아이디 : tlaxh000
+
+--- 
+
 ## ✨ Algorithm 풀이 블로그
 
 https://junhyxxn.github.io/
