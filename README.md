@@ -8,6 +8,8 @@
 
 ---
 
+## BOJ - Platinum Ⅴ
+
 ## ✨ Algorithm 풀이 블로그
 
 https://junhyxxn.github.io/
