@@ -11,7 +11,12 @@ import java.util.StringTokenizer;
 public class BOJ_17406 {
 	static int N, M, K, result;
 	static List<List<Integer>> command;
+	command => 3,4,2   4,2,1
 	static int[][] cmds;
+	cmds
+	3,4,2   4,2,1 => rotate
+	4,2,1   3,4,2 => rotate
+
 	static boolean[] visited;
 
 	static int[][] Rotate(int x, int y, int c, int[][] arr) {
