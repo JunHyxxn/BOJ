@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="ProjectRootManager">
+  <component name="ExcludeFromValidation">
+    <file url="file://$PROJECT_DIR$/11.BackTracking/SWEA_3234_준환이의양팔저울.java" />
+    <file url="file://$PROJECT_DIR$/17.분할 정복/BOJ_1074_Z.java" />
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_17" project-jdk-name="17" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
 </project>
