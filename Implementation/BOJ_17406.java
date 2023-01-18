@@ -11,10 +11,13 @@ import java.util.StringTokenizer;
 public class BOJ_17406 {
 	static int N, M, K, result;
 	static List<List<Integer>> command;
+	command => 3,4,2   4,2,1
 	static int[][] cmds;
 	static boolean[] visited;
 
 	static int[][] Rotate(int x, int y, int c, int[][] arr) {
+		4, 3, 1
+
 		// First - 마지막에 집어넣을 원소 저장
 		int temp = arr[x - c][y - c];
 		// Up - 왼쪽 테두리 위로 한칸씩 올립니다.
